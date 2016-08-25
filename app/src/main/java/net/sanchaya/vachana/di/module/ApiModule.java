@@ -1,6 +1,5 @@
 package net.sanchaya.vachana.di.module;
 
-import com.carrealtime.data.Apis;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -9,6 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 import io.realm.RealmObject;
 import javax.inject.Singleton;
+import net.sanchaya.vachana.data.Apis;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

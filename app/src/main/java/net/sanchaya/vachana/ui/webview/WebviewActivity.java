@@ -7,8 +7,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.carrealtime.R;
-import com.carrealtime.ui.util.FragmentHelper;
+import net.sanchaya.vachana.R;
+import net.sanchaya.vachana.ui.util.FragmentHelper;
 
 public class WebviewActivity extends AppCompatActivity {
 

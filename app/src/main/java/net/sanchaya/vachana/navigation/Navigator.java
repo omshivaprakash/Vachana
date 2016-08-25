@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
-import com.carrealtime.ui.home.MainActivity;
-import com.carrealtime.ui.util.animutils.TransitionHelper;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import net.sanchaya.vachana.ui.home.MainActivity;
+import net.sanchaya.vachana.ui.util.animutils.TransitionHelper;
 
 /**
  * Class used to navigate through the application.

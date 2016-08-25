@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import com.carrealtime.CarRealTimeApp;
-import com.carrealtime.di.CarRealTimeAppComponent;
+import net.sanchaya.vachana.VachanaApp;
+import net.sanchaya.vachana.di.VachanaAppComponent;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -50,7 +50,7 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
     }
 
-    protected CarRealTimeAppComponent daggerComponent() {
-        return CarRealTimeApp.component(getActivity());
+    protected VachanaAppComponent daggerComponent() {
+        return VachanaApp.component(getActivity());
     }
 }

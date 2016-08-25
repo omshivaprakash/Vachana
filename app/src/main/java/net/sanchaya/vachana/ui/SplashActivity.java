@@ -13,10 +13,10 @@ import android.transition.Visibility;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import com.carrealtime.R;
-import com.carrealtime.ui.login.LoginActivity;
-import com.carrealtime.ui.util.Utils;
-import com.carrealtime.ui.util.animutils.TransitionHelper;
+import net.sanchaya.vachana.R;
+import net.sanchaya.vachana.ui.home.MainActivity;
+import net.sanchaya.vachana.ui.util.Utils;
+import net.sanchaya.vachana.ui.util.animutils.TransitionHelper;
 
 public class SplashActivity extends AppCompatActivity {
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +67,14 @@ public class SplashActivity extends AppCompatActivity {
 
     new Handler().postDelayed(new Runnable() {
       @Override public void run() {
-        Intent mIntent = new Intent(SplashActivity.this, LoginActivity.class);
+        Intent mIntent = new Intent(SplashActivity.this, MainActivity.class);
         final Pair<View, String>[] pairs =
             TransitionHelper.createSafeTransitionParticipants(SplashActivity.this, true);
 
         ActivityOptionsCompat mActivityOptionsCompat =
             ActivityOptionsCompat.makeSceneTransitionAnimation(SplashActivity.this, pairs);
         SplashActivity.this.startActivity(mIntent, mActivityOptionsCompat.toBundle());
-        overridePendingTransition(0, R.anim.splash_fade_out);
+        overridePendingTransition(0, android.R.anim.fade_out);
         SplashActivity.this.finish();
         //supportFinishAfterTransition();
       }

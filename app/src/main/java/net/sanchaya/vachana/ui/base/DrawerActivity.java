@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import com.carrealtime.R;
+import net.sanchaya.vachana.R;
 
 public abstract class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,10 +33,10 @@ public abstract class DrawerActivity extends AppCompatActivity
         navView = (NavigationView) findViewById(R.id.nav_view);
         mContainer = (FrameLayout) findViewById(R.id.container);
 
-        //mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, 0, 0);
-        //mDrawerToggle.setDrawerIndicatorEnabled(true);
-        //drawerLayout.addDrawerListener(mDrawerToggle);
-        //navView.setNavigationItemSelectedListener(this);
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, 0, 0);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.addDrawerListener(mDrawerToggle);
+        navView.setNavigationItemSelectedListener(this);
     }
 
     protected void setupDefaultDrawer(Toolbar toolBar) {
@@ -151,22 +151,7 @@ public abstract class DrawerActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.home:
                 break;
-            case R.id.my_account:
-                break;
-            case R.id.my_cart:
-                break;
-            case R.id.wishlist:
-                break;
-            case R.id.my_messages:
-                break;
-            case R.id.my_coupans:
-                break;
-            case R.id.settings:
-                break;
-            case R.id.customer_care:
-                break;
-            case R.id.about_us:
-                break;
+
         }
         // Handle navigation view item clicks here.
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -18,13 +18,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.carrealtime.CarRealTimeApp;
-import com.carrealtime.R;
+import net.sanchaya.vachana.R;
+import net.sanchaya.vachana.VachanaApp;
 
 import static android.app.Activity.RESULT_OK;
-import static com.carrealtime.ui.webview.WebviewActivity.FINISH_URL_STRING;
-import static com.carrealtime.ui.webview.WebviewActivity.POST_DATA;
-import static com.carrealtime.ui.webview.WebviewActivity.URL_STRING;
+import static net.sanchaya.vachana.ui.webview.WebviewActivity.FINISH_URL_STRING;
+import static net.sanchaya.vachana.ui.webview.WebviewActivity.POST_DATA;
+import static net.sanchaya.vachana.ui.webview.WebviewActivity.URL_STRING;
 
 public class WebFragment extends Fragment {
 
@@ -146,8 +146,8 @@ public class WebFragment extends Fragment {
         getActivity().finish();
     }
 
-    private CarRealTimeApp getApp() {
-        return ((CarRealTimeApp) getActivity().getApplication());
+    private VachanaApp getApp() {
+        return ((VachanaApp) getActivity().getApplication());
     }
 
     private void showToast(String message) {

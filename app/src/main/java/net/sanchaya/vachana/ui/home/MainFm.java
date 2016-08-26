@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import net.sanchaya.vachana.R;
 import net.sanchaya.vachana.data.model.Vachana;
 import net.sanchaya.vachana.ui.base.BaseMvpFragment;
+import net.sanchaya.vachana.ui.util.animutils.DividerItemDecoration;
 import net.sanchaya.vachana.ui.views.KanTextView;
 
 /**
@@ -64,6 +65,7 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter,IHomeView> implemen
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+    recycler.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL_LIST));
     recycler.setAdapter(new VachanaAdapter(this,mVachanas));
   }
 
@@ -91,8 +93,8 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter,IHomeView> implemen
     return null;
   }
 
-  @Override public void onVachanaClick(int id, KanTextView mName) {
-    ShowVachanaDialogFm mFm = ShowVachanaDialogFm.newInstance(mVachanas,id);
+  @Override public void onVachanaClick(int id, KanTextView mName,Vachana mVachana) {
+    ShowVachanaDialogFm mFm = ShowVachanaDialogFm.newInstance(mVachanas,id,mVachana);
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       mFm.setEnterTransition(new Fade());
       setExitTransition(new Fade());
@@ -104,7 +106,6 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter,IHomeView> implemen
         .add(mFm,null)
         .addToBackStack(TAG)
         .commit();
-
 
   }
 }

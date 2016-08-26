@@ -1,6 +1,8 @@
 package net.sanchaya.vachana.ui.home;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ import net.sanchaya.vachana.ui.views.KanTextView;
 public class ShowVachanaDialogFm extends DialogFragment {
   @Inject VachanaPresenter mPresenter;
   List<Vachana> mVachanas;
+  Vachana mVachana;
   @BindView(R.id.title) TextView title;
   @BindView(R.id.fav) ImageView fav;
   @BindView(R.id.close) ImageView close;
@@ -43,28 +47,35 @@ public class ShowVachanaDialogFm extends DialogFragment {
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mVachanas = getArguments().getParcelableArrayList("vachana");
+    mVachana = getArguments().getParcelable("v");
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View mView = inflater.inflate(R.layout.fragment_adapter, container, false);
+    View mView = inflater.inflate(R.layout.fragment_adapter, container);
     ButterKnife.bind(this, mView);
     VachanaApp.component(getActivity()).inject(this);
+
     return mView;
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme);
     Typeface normalTypeface =
         Typeface.createFromAsset(getActivity().getAssets(), "fonts/BalooTamma-Regular.ttf");
     title.setTypeface(normalTypeface);
     name.setTypeface(normalTypeface);
+    name.setText(mVachana.getName());
   }
 
-  public static ShowVachanaDialogFm newInstance(List<Vachana> mVachanas, int mId) {
+  public static ShowVachanaDialogFm newInstance(List<Vachana> mVachanas, int mId, Vachana mVachana) {
     ShowVachanaDialogFm mFm = new ShowVachanaDialogFm();
     Bundle mBundle = new Bundle();
     mBundle.putParcelableArrayList("vachana", (ArrayList<? extends Parcelable>) mVachanas);
+    mBundle.putParcelable("v",mVachana);
     mBundle.putInt("pos", mId);
     mFm.setArguments(mBundle);
     return mFm;
@@ -74,9 +85,10 @@ public class ShowVachanaDialogFm extends DialogFragment {
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.fav:
+
         break;
       case R.id.close:
-
+        dismiss();
         break;
       case R.id.prev:
         mPresenter.getPreviousVachana();

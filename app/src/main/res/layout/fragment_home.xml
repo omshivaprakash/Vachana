@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+  <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:padding="16dp"
+          android:text="ಇಂದಿನ ವಚನ"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="18dp"
+          android:textStyle="bold"
+          />
+      <TextView
+          android:id="@+id/vachana"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:text="ಕಾರಣಮಾತನರಿವ ಕಲ್ಪಿತಭರಿತನಲ್ಲದೆ
+ಅಕಾರಣಮಾತನರಿಯನಯ್ಯಾ.
+ಕಾರ್ಯನಾಗಿ ಕಾರಣಾನುಕೂಲಿಗಾಸ್ಪದನಲ್ಲದೆ
+ಅಕಾರ್ಯನಾಗಿ ಅಕಾರಣಾನುಕೂಲಿಗಾಸ್ಪದವಿರಹಿತನಯ್ಯಾ.
+ಗುರುನಿರಂಜನ ಚನ್ನಬಸವಲಿಂಗಾ, ನಿಮ್ಮ ಶರಣ ಅನುಪಮಸುಖಿ."
+          />
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
+
+  <Button
+      android:id="@+id/allama"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="16dp"
+      android:background="@drawable/list_bg"
+      android:text="ಅಲ್ಲಮಪ್ರಭುದೇವರು"
+      />
+</LinearLayout>

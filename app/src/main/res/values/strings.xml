@@ -1,7 +1,13 @@
 <resources>
-  <string name="app_name">Vachana</string>
+  <string name="app_name">ವಚನ</string>
   <string name="action_settings">Settings</string>
   <string name="sample_vachana">ಅರಿತು ಜನ್ಮವಾದವರಿಲ್ಲ ಸತ್ತು ಮರಳಿ ತೋರುವರಿಲ್ಲ.\n ದುರಭಿಮಾನವ ಹೊತ್ತು ಅಘಟಿತ ಘಟಿತವ ನುಡಿವಿರಿ.\n ಈ ದೇಹವಿಡಿದು ನುಡಿವ ಪ್ರಪಂಚಿಗಳನೇನೆಂಬೆ ಗುಹೇಶ್ವರಾ.\n \n</string>
   <string name="navigation_drawer_open">open</string>
   <string name="navigation_drawer_close">close</string>
+  <string name="action_about">ನಮ್ಮ ಬಗ್ಗೆ</string>
+  <string name="action_contact">ಸಂಪರ್ಕಿಸಿ</string>
+  <string name="action_vachanakara">ವಚನಕಾರರು</string>
+  <string name="action_vachanagalu">ವಚನಗಳು</string>
+  <string name="action_feedback">ಪ್ರತಿಕ್ರಿಯೆ</string>
+
 </resources>

@@ -24,13 +24,14 @@ public class MainActivity extends DrawerActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     setSupportActionBar(toolbar);
+
     setupDefaultDrawer(toolbar);
     launchMainFragment();
   }
 
   private void launchMainFragment() {
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.content, new MainFm(), null)
+        .replace(R.id.content, new HomeFm(), null)
         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         .setCustomAnimations(android.R.anim.fade_in, android.R.anim.slide_out_right)
         .commit();

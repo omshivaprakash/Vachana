@@ -1,37 +1,35 @@
 package net.sanchaya.vachana.ui.home;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import java.util.List;
+import butterknife.OnClick;
 import javax.inject.Inject;
 import net.sanchaya.vachana.R;
-import net.sanchaya.vachana.data.model.Vachana;
 import net.sanchaya.vachana.data.model.Vachanaa;
 import net.sanchaya.vachana.ui.base.BaseMvpFragment;
-import net.sanchaya.vachana.ui.util.animutils.DividerItemDecoration;
-import net.sanchaya.vachana.ui.views.KanTextView;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainFm extends BaseMvpFragment<VachanaPresenter, IHomeView>
-    implements IHomeView, VachanaAdapter.OnClick {
-  private static final String TAG = MainFm.class.getSimpleName();
-  @BindView(R.id.recycler) RecyclerView recycler;
-  List<Vachana> mVachanas;
+public class HomeFm extends BaseMvpFragment<VachanaPresenter, IHomeView> implements IHomeView {
+  private static final String TAG = HomeFm.class.getSimpleName();
+  //Vachanaa mVachana;
   @Inject VachanaPresenter mPresenter;
+  @BindView(R.id.vachana) TextView vachana;
+  @BindView(R.id.allama) Button allama;
 
-  public MainFm() {
+  public HomeFm() {
   }
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,15 +38,24 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter, IHomeView>
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View mView = inflater.inflate(R.layout.fragment_main, container, false);
+    View mView = inflater.inflate(R.layout.fragment_home, container, false);
     ButterKnife.bind(this, mView);
+    setFontTypeFace();
     daggerComponent().inject(this);
     try {
-      mVachanas = mPresenter.getFromAssets(getActivity());
+      mPresenter.getTodayVachana();
     } catch (Exception mE) {
       mE.printStackTrace();
     }
     return mView;
+  }
+
+  private void setFontTypeFace() {
+    Typeface normalTypeface =
+        Typeface.createFromAsset(getActivity().getAssets(), "fonts/BalooTamma-Regular.ttf");
+    vachana.setTypeface(normalTypeface);
+    allama.setTypeface(normalTypeface);
+
   }
 
   @Override public void onStart() {
@@ -65,10 +72,6 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter, IHomeView>
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-    recycler.addItemDecoration(
-        new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-    recycler.setAdapter(new VachanaAdapter(this, mVachanas));
   }
 
   @Override public void showLoading() {
@@ -95,8 +98,16 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter, IHomeView>
     return null;
   }
 
-  @Override public void onVachanaClick(int id, KanTextView mName, Vachana mVachana) {
-    ShowVachanaDialogFm mFm = ShowVachanaDialogFm.newInstance(mVachanas, id, mVachana);
+  @Override public void updateTodayVachana(Vachanaa mVachanaa) {
+    vachana.setText(mVachanaa.getVachana().getVachana());
+  }
+
+  @OnClick(R.id.allama) public void onClick() {
+    launchAllamaFm();
+  }
+
+  private void launchAllamaFm() {
+    MainFm mFm = MainFm.newInstance();
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       mFm.setEnterTransition(new Fade());
       setExitTransition(new Fade());
@@ -104,16 +115,8 @@ public class MainFm extends BaseMvpFragment<VachanaPresenter, IHomeView>
 
     getActivity().getSupportFragmentManager()
         .beginTransaction()
-        .addSharedElement(mName, "name")
-        .add(mFm, null)
+        .add(R.id.content, mFm)
+        .addToBackStack(TAG)
         .commit();
-  }
-
-  @Override public void updateTodayVachana(Vachanaa mVachanaa) {
-
-  }
-
-  public static MainFm newInstance() {
-    return new MainFm();
   }
 }

@@ -9,10 +9,17 @@ import java.io.InputStreamReader;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import net.sanchaya.vachana.data.Apis;
 import net.sanchaya.vachana.data.model.Vachana;
+import net.sanchaya.vachana.data.model.Vachanaa;
 import net.sanchaya.vachana.ui.base.BasePresenter;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class VachanaPresenter extends BasePresenter<IHomeView> {
+
+  @Inject Apis mApis;
 
   @Inject @Singleton public VachanaPresenter() {
   }
@@ -55,4 +62,22 @@ public class VachanaPresenter extends BasePresenter<IHomeView> {
 
   }
 
+  public void getTodayVachana() {
+    addSubscription(mApis.getTodayVachana()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io())
+        .subscribe(new Subscriber<Vachanaa>() {
+          @Override public void onCompleted() {
+            // TODO: 26/08/16
+          }
+
+          @Override public void onError(Throwable e) {
+            // TODO: 26/08/16
+          }
+
+          @Override public void onNext(Vachanaa mVachanaa) {
+              getView().updateTodayVachana(mVachanaa);
+          }
+        }));
+  }
 }

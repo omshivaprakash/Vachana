@@ -6,6 +6,7 @@ import net.sanchaya.vachana.VachanaApp;
 import net.sanchaya.vachana.di.module.ApiModule;
 import net.sanchaya.vachana.di.module.AppModule;
 import net.sanchaya.vachana.di.module.PresenterModule;
+import net.sanchaya.vachana.ui.home.HomeFm;
 import net.sanchaya.vachana.ui.home.MainFm;
 import net.sanchaya.vachana.ui.home.ShowVachanaDialogFm;
 
@@ -17,6 +18,8 @@ public interface VachanaAppComponent {
   void inject(MainFm mFm);
 
   void inject(ShowVachanaDialogFm mShowVachanaDialogFm);
+
+  void inject(HomeFm mHomeFm);
 
   final class Initializer {
     public static VachanaAppComponent init(VachanaApp app) {

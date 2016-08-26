@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module public class ApiModule {
 
   @Provides @Singleton Retrofit provideRetrofit(OkHttpClient okHttpClient) {
-    return new Retrofit.Builder().baseUrl("http://carrealtime.com/api/")
+    return new Retrofit.Builder().baseUrl("http://vachana.sanchaya.net/api/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
